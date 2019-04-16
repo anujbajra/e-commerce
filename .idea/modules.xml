@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/e-commerce-statistics.iml" filepath="$PROJECT_DIR$/.idea/modules/e-commerce-statistics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/e-commerce-statistics_integrationTest.iml" filepath="$PROJECT_DIR$/.idea/modules/e-commerce-statistics_integrationTest.iml" group="e-commerce-statistics" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/e-commerce-statistics_main.iml" filepath="$PROJECT_DIR$/.idea/modules/e-commerce-statistics_main.iml" group="e-commerce-statistics" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/e-commerce-statistics_test.iml" filepath="$PROJECT_DIR$/.idea/modules/e-commerce-statistics_test.iml" group="e-commerce-statistics" />
+    </modules>
+  </component>
+</project>
