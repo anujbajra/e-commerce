@@ -11,11 +11,14 @@ class StatisticsController {
 
     def getStatisticsReport(){
 
+        println "params.dateFrom = ${params.dateFrom}"
+        println "params.dateTo = ${params.dateTo}"
+
         println "inside get statistics report"
 
         StatisticsReport statisticsReport=new StatisticsReport();
 
-        def statData=statisticsReport.getData();
+        def statData=statisticsReport.getData(params.dateFrom,params.dateTo);
         println "statData = $statData"
         render (view: "statisticsReport",model: [statData:statData])
     }
