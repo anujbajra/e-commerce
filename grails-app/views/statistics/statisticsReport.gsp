@@ -25,11 +25,11 @@
             $("#datepickerFrom").datepicker({
                 changeMonth: true,
                 changeYear: true
-            }).datepicker("setDate", new Date());
+            }).datepicker("setDate", "${fromDate}");
             $("#datepickerTo").datepicker({
                 changeMonth: true,
                 changeYear: true
-            }).datepicker("setDate", new Date());
+            }).datepicker("setDate", "${toDate}");
 
             $('.runBtn').click(function () {
                 var URL = "${createLink(controller:'statistics',action:'getStatisticsReport')}";
@@ -98,7 +98,8 @@
         <input class="runBtn" type="button" value="Run">
 
         <!--Div that will hold the pie chart-->
-        <div id="chart_div"></div>
+        <br>
+        <div id="chart_div" ></div>
         <br>
         <table id="stat_table" class="stat_table">
             <thead>
