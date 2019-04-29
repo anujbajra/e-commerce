@@ -1,13 +1,18 @@
 package e.commerce.statistics
 
-import com.retailer.reports.StatisticsReport
+import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-
 class StatisticsController {
 
+
+    def sr
+    def statisticsService
+
+    @Secured('ROLE_USER')
     def index() {
 
         redirect(action:"getStatisticsReport")
@@ -26,10 +31,18 @@ class StatisticsController {
             toDate=LocalDateTime.now().format(format)
         }
 
-        StatisticsReport statisticsReport= new StatisticsReport()
-        def statData=statisticsReport.getData(fromDate,toDate);
+        def statData=sr.getData(fromDate,toDate);
+        statisticsService.serviceMethod()
         println "statData = $statData"
 
-        render (view: "statisticsReport",model: [statData:statData,fromDate:fromDate,toDate:toDate])
+        if (params.dateFrom && params.dateTo) {
+            def responseData = [
+                    'results': statData,
+                    'fromDate': fromDate
+            ]
+            render responseData as JSON
+        }else {
+            render(view: "statisticsReport", model: [statData: statData, fromDate: fromDate, toDate: toDate])
+        }
     }
 }
