@@ -12,7 +12,7 @@ $(document).ready(function () {
         ]
     });
 
-    $('.runBtn').click(function () {
+    $('.run-btn').click(function () {
         var URL = URL;
         var dateFrom = $("#datepickerFrom").val();
         var dateTo = $("#datepickerTo").val();
@@ -28,12 +28,6 @@ $(document).ready(function () {
                 datatable.clear();
                 datatable.rows.add(resp.results);
                 datatable.draw();
-                // var trHTML = '';
-                // $.each(resp.results, function (i, item) {
-                //     trHTML += '<tr><td>' + i + '</td><td>' + item + '</td></tr>';
-                // });
-                // $('#records_table').html(trHTML);
-                // $('#stat_table').DataTable().draw();
             }
         });
     });
@@ -67,7 +61,7 @@ function drawChart(statData1) {
 
     // Set chart options
     var options = {
-        'title': 'How many clothes were sold',
+        'title': '',
         'width': 500,
         'height': 400
     };
@@ -86,5 +80,12 @@ function initDatePicker(fromDate,toDate) {
         changeMonth: true,
         changeYear: true
     }).datepicker("setDate", toDate);
+    $('.date-picker-from .fa-calendar').click(function() {
+        $("#datepickerFrom").focus();
+    });
+    $('.date-picker-to .fa-calendar').click(function() {
+        $("#datepickerTo").focus();
+    });
+
 
 }
