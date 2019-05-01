@@ -2,6 +2,7 @@ package e.commerce.statistics
 
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
+import org.grails.web.json.JSONObject
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -37,8 +38,7 @@ class StatisticsController {
 
         if (params.dateFrom && params.dateTo) {
             def responseData = [
-                    'results': statData,
-                    'fromDate': fromDate
+                    'results': statData
             ]
             render responseData as JSON
         }else {

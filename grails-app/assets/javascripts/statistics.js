@@ -6,7 +6,13 @@ $(document).ready(function () {
 
     initDatePicker(fromDate,toDate);
 
-    $('#stat_table').DataTable();
+    $('#stat_table').DataTable({
+        data: statData1,
+        columns: [
+            { data: 'Category' },
+            { data: 'Quantity' }
+        ]
+    });
 
     $('.runBtn').click(function () {
         var URL = URL;
@@ -17,10 +23,19 @@ $(document).ready(function () {
             url: URL,
             data: {dateFrom: dateFrom, dateTo: dateTo},
             success: function (resp) {
+
                 drawChart(resp.results);
-                // document.open();
-                // document.write(resp);
-                // document.close();
+
+                var datatable = $('#stat_table').DataTable();
+                datatable.clear();
+                datatable.rows.add(resp.results);
+                datatable.draw();
+                // var trHTML = '';
+                // $.each(resp.results, function (i, item) {
+                //     trHTML += '<tr><td>' + i + '</td><td>' + item + '</td></tr>';
+                // });
+                // $('#records_table').html(trHTML);
+                // $('#stat_table').DataTable().draw();
             }
         });
     });
@@ -29,7 +44,9 @@ $(document).ready(function () {
     google.charts.load('current', {'packages': ['corechart']});
 
     // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(function () {
+        drawChart(statData1);
+    });
 
 });
 
@@ -45,16 +62,16 @@ function drawChart(statData1) {
 
     jQuery.each(statData1, function (i, val) {
         data.addRow([
-            i,
-            val
+            val.Category,
+            val.Quantity
         ]);
     });
 
     // Set chart options
     var options = {
         'title': 'How many clothes were sold',
-        'width': 700,
-        'height': 600
+        'width': 500,
+        'height': 400
     };
 
     // Instantiate and draw our chart, passing in some options.

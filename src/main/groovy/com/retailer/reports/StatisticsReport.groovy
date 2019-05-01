@@ -5,7 +5,7 @@
 package com.retailer.reports
 
 import e.commerce.statistics.Sales
-
+import org.grails.web.json.JSONArray
 import org.grails.web.json.JSONObject
 import org.springframework.stereotype.Component
 
@@ -38,12 +38,11 @@ class StatisticsReport {
             }
 //            order("quantity", "asc")
         }
-        def data=[:]
+        JSONArray jsonArray=new JSONArray();
         resultSet.each {
-                data.put(it[0].name,it[1])
+            jsonArray.put(new JSONObject().put("Category", it[0].name).put("Quantity",it[1]))
         }
-        return data as JSONObject
-
+        return jsonArray
     }
 
     def getEpochMilli(String date){
