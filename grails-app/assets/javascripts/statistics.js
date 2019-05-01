@@ -1,8 +1,6 @@
 $(document).ready(function () {
 
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
+    $("#dashBoard_menu").addClass("active");
 
     initDatePicker(fromDate,toDate);
 
